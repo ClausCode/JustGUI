@@ -2,6 +2,7 @@ package com.clauscode.packages.justgui.components
 
 import com.clauscode.packages.justgui.UI
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.Transient
 import kotlinx.serialization.decodeFromString
 import net.minestom.server.inventory.click.ClickType
 

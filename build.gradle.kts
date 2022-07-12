@@ -1,5 +1,4 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-import org.jetbrains.kotlin.resolve.compatibility
 import java.net.URI
 
 plugins {
@@ -9,7 +8,7 @@ plugins {
 }
 
 group = "com.clauscode"
-version = "1.0-SNAPSHOT"
+version = "1.0.0"
 
 val minestomVersion = "e713cf62a7"
 
@@ -25,22 +24,17 @@ dependencies {
 }
 
 publishing {
-    publications {
-    }
+    publications {}
     repositories {
         maven {
-            name = "JustGUI" //  optional target repository name
-            url = URI("https://jitpack.io")
-            credentials {
-                username = "ClausCode"
-                password = "my-password"
-            }
+            name = "JustGUI"
+            version = "1.0.0"
         }
     }
 }
 
-java.sourceCompatibility = org.gradle.api.JavaVersion.VERSION_17
-java.targetCompatibility = org.gradle.api.JavaVersion.VERSION_17
+java.sourceCompatibility = JavaVersion.VERSION_17
+java.targetCompatibility = JavaVersion.VERSION_17
 
 tasks.withType<KotlinCompile> {
     kotlinOptions.jvmTarget = "17"
