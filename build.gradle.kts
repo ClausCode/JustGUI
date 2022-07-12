@@ -24,11 +24,13 @@ dependencies {
 }
 
 publishing {
-    publications {}
-    repositories {
-        maven {
-            name = "JustGUI"
+    publications {
+        create<MavenPublication>("maven") {
+            groupId = "com.github.ClausCode"
+            artifactId = "JustGUI"
             version = "1.0.0"
+
+            from(components["kotlin"])
         }
     }
 }
