@@ -1,4 +1,5 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import org.jetbrains.kotlin.resolve.compatibility
 import java.net.URI
 
 plugins {
@@ -37,6 +38,9 @@ publishing {
         }
     }
 }
+
+java.sourceCompatibility = org.gradle.api.JavaVersion.VERSION_17
+java.targetCompatibility = org.gradle.api.JavaVersion.VERSION_17
 
 tasks.withType<KotlinCompile> {
     kotlinOptions.jvmTarget = "17"
