@@ -32,7 +32,7 @@ abstract class UI() {
     }
 
     @Transient
-    private val globalHandler: GlobalEventHandler = MinecraftServer.getGlobalEventHandler()
+    val globalHandler: GlobalEventHandler = MinecraftServer.getGlobalEventHandler()
 
     @Transient
     var viewer: Player = MinecraftServer.getInstanceManager().instances.first().players.first()
@@ -47,7 +47,7 @@ abstract class UI() {
     private val components: MutableMap<String, UIComponent> = LinkedHashMap()
 
     @Transient
-    private val handler: EventNode<InventoryEvent> = EventNode.type("myEvents", EventFilter.INVENTORY)
+    val handler: EventNode<InventoryEvent> = EventNode.type("myEvents", EventFilter.INVENTORY)
 
     init {
         handler.addListener(InventoryPreClickEvent::class.java) { event -> clickInventoryEvent(event) }
@@ -64,8 +64,8 @@ abstract class UI() {
 
     fun close() {
         onClose()
-        viewer.closeInventory()
         globalHandler.removeChild(handler)
+        viewer.closeInventory()
     }
 
     fun renderAll() {

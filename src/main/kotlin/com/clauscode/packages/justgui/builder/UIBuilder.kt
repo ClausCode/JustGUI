@@ -14,11 +14,14 @@ class UIBuilder {
 
         if(template.isEmpty()) return ui
 
-        val jsonTemplate = JSONParser().parse(
-            InputStreamReader(
-                UIBuilder::class.java.classLoader.getResourceAsStream(template) ?: return ui
-            )
-        ) as JSONObject
+        val inputStream = UIBuilder::class.java.classLoader.getResourceAsStream(template) ?: return ui
+        val streamReader = InputStreamReader(inputStream)
+
+        val jsonTemplate = JSONParser().parse(streamReader) as JSONObject
+
+        streamReader.close()
+        inputStream.close()
+
         ui = UI.json.decodeFromString(jsonTemplate.toJSONString())
         ui.viewer = viewer
         return ui
