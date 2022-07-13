@@ -16,6 +16,10 @@ object MaterialSerializer : KSerializer<Material> {
     }
 
     override fun deserialize(decoder: Decoder): Material {
-        return Material.fromNamespaceId(decoder.decodeString())!!
+        var namespace = decoder.decodeString()
+        if(namespace.indexOf(":") == -1) {
+            namespace = "minecraft:$namespace"
+        }
+        return Material.fromNamespaceId(namespace)!!
     }
 }

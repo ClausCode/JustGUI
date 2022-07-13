@@ -52,12 +52,7 @@ open class UIView() : UIComponent() {
     private fun createItemStack() =
         ItemStack.of(icon, amount)
             .withDisplayName(Component.text(title))
-            .withLore { lore ->
-                for (line in description) {
-                    lore.add(Component.text(line))
-                }
-                return@withLore lore
-            }
+            .withLore(createLore())
             .withMeta { meta ->
                 if (glow) {
                     meta.enchantment(Enchantment.UNBREAKING, 1)
@@ -65,6 +60,14 @@ open class UIView() : UIComponent() {
                 meta.hideFlag(ItemHideFlag.HIDE_ENCHANTS, ItemHideFlag.HIDE_ATTRIBUTES)
             }
             .withTag(Tag.String("component_id"), id)
+
+    private fun createLore(): MutableList<Component> {
+        val lore: MutableList<Component> = ArrayList()
+        for (line in description) {
+            lore.add(Component.text(line))
+        }
+        return lore
+    }
 
     override fun decode(json: String): UIComponent {
         return UI.json.decodeFromString<UIView>(json)
