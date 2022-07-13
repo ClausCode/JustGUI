@@ -51,7 +51,7 @@ open class UIView() : UIComponent() {
 
     private fun createItemStack() =
         ItemStack.of(icon, amount)
-            .withDisplayName(Component.text(title))
+            .withDisplayName(Component.text(putProps(title)))
             .withLore(createLore())
             .withMeta { meta ->
                 if (glow) {
@@ -64,9 +64,17 @@ open class UIView() : UIComponent() {
     private fun createLore(): MutableList<Component> {
         val lore: MutableList<Component> = ArrayList()
         for (line in description) {
-            lore.add(Component.text(line))
+            lore.add(Component.text(putProps(line)))
         }
         return lore
+    }
+
+    private fun putProps(str: String): String {
+        var out = str
+        for(key in props.keys) {
+            out = out.replace("{$key}", props[key]!!)
+        }
+        return out
     }
 
     override fun decode(json: String): UIComponent {
