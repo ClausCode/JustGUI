@@ -2,6 +2,7 @@ package com.clauscode.packages.justgui.components
 
 import com.clauscode.packages.justgui.UI
 import com.clauscode.packages.justgui.UIPosition
+import com.clauscode.packages.justgui.serialize.MaterialSerializer
 import com.clauscode.packages.justgui.serialize.UIPositionSerializer
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.Transient
@@ -28,6 +29,7 @@ open class UIView() : UIComponent() {
     @Serializable(UIPositionSerializer::class)
     var position: UIPosition = UIPosition.bySlot(0)
 
+    @Serializable(MaterialSerializer::class)
     var icon: Material = Material.STONE
     var amount: Int = 1
         set(value) {
