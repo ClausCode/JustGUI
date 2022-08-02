@@ -8,7 +8,7 @@ plugins {
 }
 
 group = "com.clauscode"
-version = "1.0.0"
+version = "1.0.3"
 
 val minestomVersion = "e713cf62a7"
 
@@ -28,7 +28,7 @@ publishing {
         create<MavenPublication>("maven") {
             groupId = "com.github.ClausCode"
             artifactId = "JustGUI"
-            version = "1.0.0"
+            version = "1.0.3"
 
             from(components["kotlin"])
         }

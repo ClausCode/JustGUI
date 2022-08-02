@@ -35,7 +35,7 @@ abstract class UI() {
     val globalHandler: GlobalEventHandler = MinecraftServer.getGlobalEventHandler()
 
     @Transient
-    var viewer: Player = MinecraftServer.getInstanceManager().instances.first().players.first()
+    lateinit var viewer: Player
 
     var title: String = "Example UI"
     var type: InventoryType = InventoryType.CHEST_6_ROW
