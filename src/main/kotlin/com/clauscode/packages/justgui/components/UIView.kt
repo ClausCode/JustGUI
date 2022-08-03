@@ -33,7 +33,7 @@ open class UIView() : UIComponent() {
     var icon: Material = Material.STONE
     var amount: Int = 1
         set(value) {
-            field = min(0, max(127, value))
+            field = max(0, min(127, value))
         }
     var glow: Boolean = false
 
